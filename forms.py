@@ -9,14 +9,14 @@ class UserForm(Form):
     id=IntegerField("id", [
         validators.number_range(min=1, max=20, message='valor no valido')
     ])
-    nombre=StringField("Nombre", [
+    nombre=StringField("nombre", [
         validators.DataRequired(message="El nombre es requerido"),
         validators.length(min=4,max=20, message='requiere min=4 max=20')
     ])
     apaterno=StringField("apaterno", [
         validators.DataRequired(message="El apellido es requerido")
     ])
-    correo=EmailField("correo", [
+    email=EmailField("email", [
         validators.Email(message="El apellido es requerido"),
-        validators.Email(message='Ingrese un correo valido')
+        validators.Email(message='Ingrese un email valido')
     ])
