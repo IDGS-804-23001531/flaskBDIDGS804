@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="flex justify-center min-h-screen px-4 pt-10 pb-32">
+
+    <div
+        class="relative bg-white w-full max-w-md p-8 rounded-2xl shadow-xl border border-gray-200 transition hover:shadow-2xl">
+
+        <!-- Botón Dropdown -->
+        <button id="dropdownButton" data-dropdown-toggle="dropdown"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full p-2 transition">
+            <span class="sr-only">Open dropdown</span>
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01M12 12h.01M18 12h.01" />
+            </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="dropdown"
+            class="z-10 hidden absolute right-4 top-14 bg-white border border-gray-200 rounded-xl shadow-md w-40">
+            <ul class="p-2 text-sm text-gray-700 font-medium">
+                <li>
+                    <a href="#" class="block p-2 rounded-md hover:bg-gray-100 transition">Editar</a>
+                </li>
+                <li>
+                    <a href="#" class="block p-2 rounded-md hover:bg-gray-100 transition">Exportar</a>
+                </li>
+                <li>
+                    <a href="#" class="block p-2 rounded-md text-red-500 hover:bg-red-50 transition">Eliminar</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="flex flex-col items-center text-center">
+
+            <!-- Imagen -->
+            <div style="width:300px; height:300px;" class="rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
+                <img src="{{ url_for('static', filename='img/iconoPersona.png') }}" alt="Persona"
+                    class="w-full h-full object-cover">
+            </div>
+
+            <!-- Nombre -->
+            <h2 class="mt-6 text-2xl font-bold text-gray-800">
+                {{ nombre }} {{ apellidos }}
+            </h2>
+
+            <!-- Email -->
+            <p class="mt-2 text-gray-500 text-sm">
+                {{ email }}
+            </p>
+
+            <!-- Cursos -->
+            <div class="mt-6 w-full">
+                <h3 class="font-semibold text-gray-800 mb-3 text-center">
+                    Cursos que imparte
+                </h3>
+
+                {% if cursos %}
+                <div class="max-h-40 overflow-y-auto pr-1">
+                    <ul class="grid gap-2">
+                        {% for curso in cursos %}
+                        <li
+                            class="bg-gray-50 py-2 px-3 rounded-lg border border-gray-200 text-sm text-gray-700 text-center hover:bg-gray-100 transition">
+                            {{ curso.nombre }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <p class="text-gray-400 text-sm text-center">
+                    Este maestro no tiene cursos asignados.
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Línea decorativa -->
+            <div class="w-16 h-1 bg-blue-500 rounded-full mt-4 mb-6"></div>
+
+            <!-- Botón -->
+            <button type="button" onclick="window.location.href='/maestros'"
+                class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl shadow-md hover:shadow-lg transition">
+                Regresar
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
