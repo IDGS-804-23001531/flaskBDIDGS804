@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form class="max-w-md mx-auto" method="POST" action="{{ url_for('inscribir.nueva') }}" novalidate>
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <br><br>
+
+    <!-- Alumno -->
+    <div class="relative z-0 w-full mb-5 group">
+        <label class="block text-sm font-medium text-heading mb-2">
+            Alumno
+        </label>
+
+        <select name="alumno_id"
+            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer">
+
+            {% for value,label in form.alumno_id.choices %}
+            <option value="{{value}}">
+                {{label}}
+            </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+
+    <!-- Curso y maestro -->
+    <div class="relative z-0 w-full mb-5 group">
+        <label class="block text-sm font-medium text-heading mb-2">
+            Curso / Maestro
+        </label>
+
+        <select name="curso_id"
+            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer">
+
+            {% for value,label in form.curso_id.choices %}
+            <option value="{{value}}">
+                {{label}}
+            </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <button type="submit"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+        Registar
+    </button>
+
+    <button type="button" onclick="window.location.href='/inscribir'"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+        Cancelar
+    </button>
+
+</form>
+
+{% endblock %}

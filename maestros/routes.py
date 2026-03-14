@@ -52,7 +52,7 @@ def modificar():
 		create_form.especialidad.data = maes1.especialidad
 		create_form.email.data = maes1.email
 
-	if request.method == 'POST':
+	if request.method == 'POST'and create_form.validate():
 		id = create_form.matricula.data
 		# select * from maestros where matricula == id
 		maes1 = db.session.query(Maestros).filter(Maestros.matricula == id).first()

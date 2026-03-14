@@ -12,7 +12,8 @@
             class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full p-2 transition">
             <span class="sr-only">Open dropdown</span>
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01M12 12h.01M18 12h.01" />
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                    d="M6 12h.01M12 12h.01M18 12h.01" />
             </svg>
         </button>
 
@@ -32,30 +33,37 @@
             </ul>
         </div>
 
-        <!-- Contenido principal -->
+        <!-- Contenido -->
         <div class="flex flex-col items-center text-center">
 
             <!-- Imagen -->
-            <div style="width:300px; height:300px;" class="rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
-                <img src="{{ url_for('static', filename='img/iconoPersona.png') }}" alt="Persona"
+            <div style="width:300px; height:300px;"
+                class="rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
+                <img src="{{ url_for('static', filename='img/cursos.png') }}"
+                    alt="Curso"
                     class="w-full h-full object-cover">
             </div>
 
-            <!-- Nombre -->
+            <!-- Nombre del curso -->
             <h2 class="mt-6 text-2xl font-bold text-gray-800">
-                {{ nombre }} {{ apellidos }}
+                {{ nombre }}
             </h2>
 
-            <!-- Email -->
+            <!-- Maestro -->
             <p class="mt-2 text-gray-500 text-sm">
-                {{ email }}
+                Maestro: {{ maestro }}
             </p>
 
-            <!-- Línea decorativa -->
+            <!-- Descripción -->
+            <p class="mt-4 text-gray-600 text-sm px-4">
+                {{ descripcion }}
+            </p>
+
+            <!-- Línea -->
             <div class="w-16 h-1 bg-blue-500 rounded-full mt-4 mb-6"></div>
 
             <!-- Botón -->
-            <button type="button" onclick="window.location.href='/maestros'"
+            <button type="button" onclick="window.location.href='/cursos'"
                 class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl shadow-md hover:shadow-lg transition">
                 Regresar
             </button>

@@ -31,12 +31,12 @@
                 </li>
             </ul>
         </div>
-
         <!-- Contenido principal -->
         <div class="flex flex-col items-center text-center">
 
-            <!-- Imagen -->
-            <div style="width:300px; height:300px;" class="rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
+            <!-- Imagen centrada y proporcionada -->
+            <div style="width:300px; height:300px;"
+                class="rounded-full overflow-hidden border-4 border-blue-100 shadow-lg">
                 <img src="{{ url_for('static', filename='img/iconoPersona.png') }}" alt="Persona"
                     class="w-full h-full object-cover">
             </div>
@@ -51,11 +51,16 @@
                 {{ email }}
             </p>
 
+            <!-- Telefono -->
+            <p class="mt-1 text-gray-500 text-sm">
+                Teléfono: {{ telefono }}
+            </p>
+
             <!-- Línea decorativa -->
             <div class="w-16 h-1 bg-blue-500 rounded-full mt-4 mb-6"></div>
 
             <!-- Botón -->
-            <button type="button" onclick="window.location.href='/maestros'"
+            <button type="button" onclick="window.location.href='/alumnos'"
                 class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl shadow-md hover:shadow-lg transition">
                 Regresar
             </button>

@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<div class="py-32 relative overflow-x-auto sm:rounded-lg">
+
+    <form method="POST" class="mb-8 flex flex-wrap items-end">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- FILTRO ALUMNO -->
+        <div class="mx-3">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Alumno</label>
+
+            <select id="alumno" name="alumno_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-56">
+
+                <option value="">Seleccionar alumno</option>
+
+                {% for a in alumnos %}
+                <option value="{{a.id}}">
+                    {{a.nombre}} {{a.apellidos}}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- FILTRO MAESTRO -->
+        <div class="mx-3">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Maestro</label>
+
+            <select id="maestro" name="maestro_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-56">
+
+                <option value="">Seleccionar maestro</option>
+
+                {% for m in maestros %}
+                <option value="{{m.matricula}}">
+                    {{m.nombre}} {{m.apellidos}}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- FILTRO CURSO -->
+        <div class="mx-3">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Curso</label>
+
+            <select id="curso" name="curso_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 w-56">
+
+                <option value="">Seleccionar curso</option>
+
+                {% for c in cursos %}
+                <option value="{{c.id}}">
+                    {{c.nombre}}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="flex gap-4 mx-3">
+
+            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">
+                Buscar
+            </button>
+
+            <a href="/inscribir" class="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600">
+                Volver
+            </a>
+
+        </div>
+
+    </form>
+
+
+    <table class="py-2 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+            <tr>
+
+                <th scope="col" class="px-6 py-3">
+                    Alumno
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Curso
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Maestro
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Especialidad
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for i in inscripciones %}
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                    {{ i.nombre }} {{ i.apellidos }}
+
+                </th>
+
+                <td class="px-6 py-4">
+                    {{ i.curso }}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{ i.maestro }}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{ i.especialidad }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+<!-- SCRIPT PARA ACTIVAR SOLO UN FILTRO -->
+
+<script>
+
+    const alumno = document.getElementById("alumno");
+    const maestro = document.getElementById("maestro");
+    const curso = document.getElementById("curso");
+
+    alumno.addEventListener("change", () => {
+
+        if (alumno.value !== "") {
+            maestro.disabled = true;
+            curso.disabled = true;
+        } else {
+            maestro.disabled = false;
+            curso.disabled = false;
+        }
+
+    });
+
+    maestro.addEventListener("change", () => {
+
+        if (maestro.value !== "") {
+            alumno.disabled = true;
+            curso.disabled = true;
+        } else {
+            alumno.disabled = false;
+            curso.disabled = false;
+        }
+
+    });
+
+    curso.addEventListener("change", () => {
+
+        if (curso.value !== "") {
+            alumno.disabled = true;
+            maestro.disabled = true;
+        } else {
+            alumno.disabled = false;
+            maestro.disabled = false;
+        }
+
+    });
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<section class="bg-neutral-primary py-32">
+
+    <div class="px-4 mx-auto max-w-screen-xl text-center">
+
+        <!-- Título -->
+        <h1 class="mb-8 text-4xl font-bold tracking-tight text-heading md:text-5xl">
+            Módulo de Inscripciones
+        </h1>
+
+        <!-- Descripción -->
+        <p class="mb-12 text-lg text-body lg:text-xl sm:px-16 xl:px-48">
+            En este módulo podrás registrar alumnos en los cursos disponibles
+            y consultar todas las inscripciones realizadas dentro del sistema.
+        </p><br>
+
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row justify-center gap-10">
+
+            <!-- NUEVA INSCRIPCIÓN -->
+            <a href="{{ url_for('inscribir.nueva') }}" class="flex items-center justify-center gap-2 text-white bg-green-500 hover:bg-green-600
+                font-medium rounded-base text-base px-6 py-3">
+
+                <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4v16m8-8H4" />
+                </svg>
+
+                Nueva Inscripción
+
+            </a>
+
+            <!-- CONSULTAR -->
+            <a href="{{ url_for('inscribir.consultar') }}" class="flex items-center justify-center gap-2 text-white bg-orange-500 hover:bg-orange-600
+                font-medium rounded-base text-base px-6 py-3">
+
+                <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    viewBox="0 0 24 24">
+
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 18a8 8 0 1 1 6.32-3.1L22 20" />
+
+                </svg>
+
+                Consultar Inscripciones
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
